@@ -157,6 +157,7 @@ MonoBehaviour:
   _animator: {fileID: 7901136573666962339}
   _hitBox: {fileID: 6309537810727483747}
   _enemyFillBar: {fileID: 7612818413790568087}
+  _onScoreAdd: {fileID: 11400000, guid: ecbb3e30bd6bc624ba2912ae44c0703f, type: 2}
 --- !u!65 &6418490128919728387
 BoxCollider:
   m_ObjectHideFlags: 0

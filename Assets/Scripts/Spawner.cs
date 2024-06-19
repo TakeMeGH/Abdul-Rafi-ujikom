@@ -10,10 +10,24 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject[] _enemies;
     [SerializeField] Transform _leftBound;
     [SerializeField] Transform _rightBound;
+    [SerializeField] VoidEventChannel _onGameFinished;
     float _currentTime = 0;
+    bool stopSpawn = false;
+
+    private void OnEnable()
+    {
+        _onGameFinished.OnEventRaised += StopSpawn;
+    }
+
+    private void OnDisable()
+    {
+        _onGameFinished.OnEventRaised -= StopSpawn;
+
+    }
 
     private void Update()
     {
+        if(stopSpawn) return;
         _currentTime += Time.deltaTime;
         if (_currentTime >= _intervalTime)
         {
@@ -34,6 +48,11 @@ public class Spawner : MonoBehaviour
     {
         Vector3 pos = new Vector3(Random.Range(_leftBound.position.x, _rightBound.position.x), 0, _leftBound.position.z);
         return pos;
+    }
+
+    void StopSpawn()
+    {
+        stopSpawn = true;
     }
 
 

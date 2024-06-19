@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] HitBox _hitBox;
     [SerializeField] Image _enemyFillBar;
+    [SerializeField] IntEventChannel _onScoreAdd;
     Rigidbody _rigidbody;
     float _currentHunger = 0;
 
@@ -52,6 +53,7 @@ public class EnemyController : MonoBehaviour
 
     void OnDead()
     {
+        _onScoreAdd.RaiseEvent(_score);
         Destroy(gameObject);
     }
 }

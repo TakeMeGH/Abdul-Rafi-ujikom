@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,18 +8,47 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _timer;
     [SerializeField] TMP_Text _timerText;
     [SerializeField] TMP_Text _scoreText;
-    // Start is called before the first frame update
+    [SerializeField] IntEventChannel _onScoreInc;
+    [SerializeField] VoidEventChannel _onGameFinished;
+    bool isEnded = false;
+
+    private void OnEnable()
+    {
+        _onScoreInc.OnEventRaised += UpdateScore;
+    }
+    private void OnDisable()
+    {
+        _onScoreInc.OnEventRaised -= UpdateScore;
+    }
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // UpdateUI();
-        // _timer -= Time.deltaTime;
-        // if(_timer )
-        // _score
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        if (isEnded) return;
+
+        _timer -= Time.deltaTime;
+        if (_timer <= 0) _timer = 0;
+
+        _timerText.text = "Timer: " + (int)_timer;
+
+        if (isEnded == false && _timer <= 0)
+        {
+            isEnded = true;
+            _onGameFinished.RaiseEvent();
+        }
+    }
+
+    void UpdateScore(int val)
+    {
+        _score += val;
+        _scoreText.text = "Score: " + _score;
     }
 }

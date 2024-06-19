@@ -9,6 +9,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] Transform _spawnLocation;
     [SerializeField] GameObject _bullet;
+    [SerializeField] VoidEventChannel _onGameFinished;
+    bool stopInput = false;
+
+    private void OnEnable()
+    {
+        _onGameFinished.OnEventRaised += OnFinish;
+    }
+    private void OnDisable()
+    {
+        _onGameFinished.OnEventRaised -= OnFinish;
+
+    }
 
     void Start()
     {
@@ -22,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMove()
     {
+        if (stopInput) return;
         _rigidbody.AddForce(new Vector3(_maxSpeed * _moveValue - GetPlayerHorizontalVelocity(), 0, 0), ForceMode.VelocityChange);
         HandleMoveAnimation();
     }
@@ -44,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnThrowFood(InputAction.CallbackContext context)
     {
+        if (stopInput) return;
         if (context.performed)
         {
             var bullet = Instantiate(_bullet, _spawnLocation);
@@ -61,5 +75,11 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 value = _rigidbody.velocity;
         return value.x;
+    }
+
+    void OnFinish()
+    {
+        stopInput = true;
+        _animator.Play("GameOver");
     }
 }
