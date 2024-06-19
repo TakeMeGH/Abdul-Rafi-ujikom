@@ -7,6 +7,7 @@ public class BulletController : MonoBehaviour
     Rigidbody _rigidbody;
     [SerializeField] float _maxSpeed;
     [SerializeField] float _lifeTime;
+    public int HungerValue;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();

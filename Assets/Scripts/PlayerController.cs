@@ -46,7 +46,8 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            Instantiate(_bullet, _spawnLocation);
+            var bullet = Instantiate(_bullet, _spawnLocation);
+            bullet.transform.parent = null;
         }
     }
 

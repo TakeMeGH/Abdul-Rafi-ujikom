@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 10
   _lifeTime: 3
+  HungerValue: 25
 --- !u!1001 &9157808936872293635
 PrefabInstance:
   m_ObjectHideFlags: 0
