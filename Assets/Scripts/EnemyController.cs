@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _score;
     [SerializeField] Animator _animator;
     [SerializeField] HitBox _hitBox;
+    [SerializeField] Image _enemyFillBar;
     Rigidbody _rigidbody;
     float _currentHunger = 0;
 
@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _enemyFillBar.fillAmount = 0;
     }
 
     private void FixedUpdate()
@@ -41,6 +42,8 @@ public class EnemyController : MonoBehaviour
     void OnGetHit(int value)
     {
         _currentHunger += value;
+        _enemyFillBar.fillAmount = Mathf.Min(1, _currentHunger / _hungerNeed);
+
         if (_currentHunger >= _hungerNeed)
         {
             OnDead();
