@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text _scoreText;
     [SerializeField] IntEventChannel _onScoreInc;
     [SerializeField] VoidEventChannel _onGameFinished;
+    [SerializeField] GameObject GameOverUI;
     bool isEnded = false;
 
     private void OnEnable()
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             isEnded = true;
             _onGameFinished.RaiseEvent();
+            GameOverUI.SetActive(true);
         }
     }
 

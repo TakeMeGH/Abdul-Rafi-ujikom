@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform _spawnLocation;
     [SerializeField] GameObject _bullet;
     [SerializeField] VoidEventChannel _onGameFinished;
+    [SerializeField] AudioSource audioSource;
     bool stopInput = false;
 
     private void OnEnable()
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (stopInput) return;
         if (context.performed)
         {
+            audioSource.Play();
             var bullet = Instantiate(_bullet, _spawnLocation);
             bullet.transform.parent = null;
         }

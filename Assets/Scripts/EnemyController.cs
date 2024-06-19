@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] HitBox _hitBox;
     [SerializeField] Image _enemyFillBar;
     [SerializeField] IntEventChannel _onScoreAdd;
+    [SerializeField] AudioSource audioSourceEat;
     Rigidbody _rigidbody;
     float _currentHunger = 0;
 
@@ -49,11 +50,16 @@ public class EnemyController : MonoBehaviour
         {
             OnDead();
         }
+        else
+        {
+            audioSourceEat.Play();
+        }
     }
 
     void OnDead()
     {
         _onScoreAdd.RaiseEvent(_score);
+        VFXPlayer.Instance.PlaySFX();
         Destroy(gameObject);
     }
 }
