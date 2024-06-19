@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &54635559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 54635560}
+  m_Layer: 0
+  m_Name: SpawnLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &54635560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54635559}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 608415177}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &158196152
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +648,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5810639973741359891, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
+      propertyPath: _bullet
+      value: 
+      objectReference: {fileID: 8400895114388165645, guid: a535ab8ac742de947b8cd0640fc018b5, type: 3}
+    - target: {fileID: 5810639973741359891, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
       propertyPath: _animator
       value: 
       objectReference: {fileID: 1448491183}
@@ -624,9 +659,21 @@ PrefabInstance:
       propertyPath: _maxSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5810639973741359891, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
+      propertyPath: _spawnLocation
+      value: 
+      objectReference: {fileID: 54635560}
     - target: {fileID: 6603829087332036971, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215454098816833902, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215454098816833902, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -634,6 +681,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 782237047047664699, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1448491182}
+    - targetCorrespondingSourceObject: {fileID: 782237047047664699, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 54635560}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6603829087332036971, guid: 94df11e02004e9f4a80609fb07a8ebd4, type: 3}
       insertIndex: -1

@@ -7,13 +7,15 @@ public class PlayerController : MonoBehaviour
     float _moveValue = 0;
     [SerializeField] float _maxSpeed;
     [SerializeField] Animator _animator;
+    [SerializeField] Transform _spawnLocation;
+    [SerializeField] GameObject _bullet;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         HandleMove();
     }
@@ -40,9 +42,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnThrowFood()
+    public void OnThrowFood(InputAction.CallbackContext context)
     {
-        Debug.Log("FOOD");
+        if (context.performed)
+        {
+            Instantiate(_bullet, _spawnLocation);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
